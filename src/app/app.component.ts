@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Customer } from './customer';
 
 @Component({
   selector: 'app-root',
@@ -6,17 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  name = 'gang';
-  region = 'East';
-  city = 'Anytown';
-  address = '123 main street';
-  hideAddress = false;
-
-  addressClick() {
-    this.hideAddress = !this.hideAddress;
-  }
-
-  regionChange(region: string) {
-    this.region = region;
-  }
+  customer: Customer = {
+    id: 1,
+    name: 'Alex Smith',
+    address: {
+      street: '123 Main Street',
+      city: 'Anytown',
+      state: 'California',
+      region: 'West'
+    }
+  };
 }
