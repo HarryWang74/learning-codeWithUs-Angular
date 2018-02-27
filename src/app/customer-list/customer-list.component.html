@@ -9,5 +9,7 @@
 </ul>
 
 <div *ngIf="customer">
-  <app-customer-detail [customer]="customer"></app-customer-detail>
+  <app-customer-detail 
+                        [customer]="customer"
+                        (shift)="shift($event)"></app-customer-detail>
 </div>
