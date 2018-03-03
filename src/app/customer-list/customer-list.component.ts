@@ -10,18 +10,25 @@ import { LoggerService } from '../logger.service';
   styleUrls: ['./customer-list.component.css']
 })
 export class CustomerListComponent implements OnInit {
-
   customer: Customer;
   customers: Customer[];
+  isBusy = false;
 
-  // inject the DataService
   constructor(
     private dataService: DataService,
     private logger: LoggerService) { }
 
-  ngOnInit() {
+  ngOnInit() { this.getCustomers(); }
+
+  getCustomers() {
+    this.isBusy = true;
     this.logger.log('Getting customers ...');
-    this.customers = this.dataService.getCustomers();
+
+    this.dataService.getCustomers().then(  // promise version
+      custs => {
+        this.isBusy = false;
+        this.customers = custs;
+      });
   }
 
   shift(increment: number) {
